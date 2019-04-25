@@ -10,17 +10,17 @@ public class thread2 extends Thread {
   
     private BlockingQueue queue1;
     private BlockingQueue queue2;
-    private thread1 first ;
-    public thread2(BlockingQueue qRead ,BlockingQueue qRwrite,thread1 th) {
+  //  private thread1 first ;
+    public thread2(BlockingQueue qRead ,BlockingQueue qRwrite) {
 		queue1 = qRead;
                 queue2 = qRwrite;
-                first = th;
+               // first = th;
                 
          
 	}
     public void run() {
        
-           while(!queue1.Empty()&&first.isAlive()){
+           while(!queue1.Empty()){
             try {     
             String readfile=(String) queue1.RmQueue();
             String content=thread2.readFileAsString("C:\\Users\\Alexander\\Documents\\NetBeansProjects\\"+readfile);
