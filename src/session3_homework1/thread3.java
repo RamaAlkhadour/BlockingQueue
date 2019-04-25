@@ -14,22 +14,21 @@ public class thread3 extends Thread {
 	}
        
     public void run() {
-		for(int i = 0; i < 100; i++) {
+                    for(int i = 0; i < 100; i++) {
 			try {
-                        String line = queue.readQueue(i) ;
+                        String line = (String)queue.RmQueue() ;
                         thread3.appendStringToFile(line);
 			} catch (InterruptedException e) {
 				
 			}
-                        catch(IOException e) {	
-		}
+                        catch(IOException e) {
 		}
 	}
-
+    }
   public static void appendStringToFile(String line ) throws IOException {
 		File file = new File("result.txt");
 		FileWriter fw = new FileWriter(file, true);
-		fw.write(line + "\n");
+		fw.write(line + " \r\n");
 		fw.close();
 	}
      

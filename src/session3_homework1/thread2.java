@@ -8,16 +8,21 @@ import java.util.List;
 
 public class thread2 extends Thread {
   
-    private BlockingQueue queue;
-    public thread2(BlockingQueue q) {
-		queue = q;
+    private BlockingQueue queue1;
+    private BlockingQueue queue2;
+    private thread1 first ;
+    public thread2(BlockingQueue qRead ,BlockingQueue qRwrite,thread1 th) {
+		queue1 = qRead;
+                queue2 = qRwrite;
+                first = th;
+                
+         
 	}
     public void run() {
-		
-        for(int i=0;i<100;i++) {
-            String readfile="";
-            try {
-            readfile= queue.readQueue(i);
+       
+           while(!queue1.Empty()&&first.isAlive()){
+            try {     
+            String readfile=(String) queue1.RmQueue();
             String content=thread2.readFileAsString("C:\\Users\\Alexander\\Documents\\NetBeansProjects\\"+readfile);
             int numL=0;
             int numD=0;
@@ -31,18 +36,16 @@ public class thread2 extends Thread {
                     rest++;
 			}
             String m =String.format(readfile+"Of %d Letters ,Of %d Digits ,and %d rest ", numL,numD,rest);
-				queue.add2Queue(m);
+		queue2.add2Queue(m);
 				
             }catch(InterruptedException e) {
 		System.out.println(e.getClass());
+            }catch(IOException e) {	
 		}
-		catch(IOException e) {
-				
-		}
-			
-	}
     }
-                        
+    }
+    
+
    public static String readFileAsString(String name) throws IOException {
 		return new String(Files.readAllBytes(Paths.get(name)));
    }

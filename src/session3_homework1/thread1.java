@@ -1,12 +1,10 @@
 
 package session3_homework1;
 
-import java.util.LinkedList;
-import java.util.List;
-
 public class thread1 extends Thread {
     
         private BlockingQueue queue;
+       
 	public thread1(BlockingQueue q) {
 		queue = q;
 	}
@@ -19,10 +17,16 @@ public class thread1 extends Thread {
 			} catch (InterruptedException e) {
 				e.printStackTrace();
 			}
-		}
-	}
-
+                   
+                }
+        }
+        
+	
 }
+
+	
+
+
 
     
 		

@@ -13,9 +13,10 @@ public class Session3_homework1 {
         
         //تعريف الرتل الثاني ومصفوفة لتعريف ثمانية نياسب من النوع الثاني
         BlockingQueue queue2=new BlockingQueue (100);
-        thread2 []second = new thread2[8];  
+        int numOfSecond = 8 ;
+        thread2 []second = new thread2[numOfSecond];  
         for(int i = 0; i < 8; i++){
-            second[i]=new thread2 (queue2);
+            second[i]=new thread2 (queue1,queue2,first);
          }
         
         //تعريف النيسب من النوع الثالث
