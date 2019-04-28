@@ -10,16 +10,16 @@ public class thread2 extends Thread {
   
     private BlockingQueue queue1;
     private BlockingQueue queue2;
-  //  private thread1 first ;
-    public thread2(BlockingQueue qRead ,BlockingQueue qRwrite) {
+    private thread1 first ;
+    public thread2(BlockingQueue qRead ,BlockingQueue qRwrite,thread1 th) {
 		queue1 = qRead;
                 queue2 = qRwrite;
-               // first = th;
+                first = th;
                 
          
 	}
     public void run() {
-       
+       while(first.isAlive()){
            while(!queue1.Empty()){
             try {     
             String readfile=(String) queue1.RmQueue();
@@ -42,6 +42,7 @@ public class thread2 extends Thread {
 		System.out.println(e.getClass());
             }catch(IOException e) {	
 		}
+    }
     }
     }
     
